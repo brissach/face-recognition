@@ -9,7 +9,8 @@ import java.awt.image.BufferedImage;
  * @since 16.02.2024 12:09
  * © face-recognition - All Rights Reserved
  */
-public class EncoderImpl implements Encoder {
+public class ImageEncoder implements Encoder<BufferedImage> {
+
   @Override
   public ContextVector encode(BufferedImage image) {
     int w = image.getWidth();
