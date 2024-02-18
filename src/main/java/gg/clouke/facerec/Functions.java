@@ -1,5 +1,7 @@
 package gg.clouke.facerec;
 
+import gg.clouke.facerec.filter.EdgeDetection;
+
 import java.awt.image.BufferedImage;
 import java.util.function.Function;
 
@@ -9,6 +11,8 @@ import java.util.function.Function;
  * © face-recognition - All Rights Reserved
  */
 public class Functions {
+
+  private static final EdgeDetection EDGE_DET_FILTER = new EdgeDetection();
 
   public static final Function<BufferedImage, BufferedImage> RESCALE = image -> {
     int w = image.getWidth();
@@ -26,5 +30,7 @@ public class Functions {
 
     return image;
   };
+
+  public static final Function<BufferedImage, BufferedImage> EDGE_DETECTION = EDGE_DET_FILTER::apply;
 
 }
