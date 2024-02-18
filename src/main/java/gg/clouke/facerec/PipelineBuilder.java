@@ -1,6 +1,7 @@
 package gg.clouke.facerec;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 import java.util.function.Function;
@@ -26,6 +27,12 @@ public class PipelineBuilder<O> {
 
   public PipelineBuilder<O> addStage(Function<O, O> stage) {
     stages.add(stage);
+    return this;
+  }
+
+  @SafeVarargs
+  public final PipelineBuilder<O> addStages(Function<O, O>... functions) {
+    stages.addAll(Arrays.asList(functions));
     return this;
   }
 
