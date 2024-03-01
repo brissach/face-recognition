@@ -10,7 +10,7 @@ import java.util.List;
  */
 public interface Batches {
 
-  static <T> List<Batch<T>> split(List<T> samples, int batchSize) {
+  static <T> BatchIterator<T> split(List<T> samples, int batchSize) {
     List<Batch<T>> batches = new ArrayList<>();
 
     int size = samples.size();
@@ -22,7 +22,7 @@ public interface Batches {
 
       batches.add(batch);
     }
-    return batches;
+    return new BatchIterator<>(batches);
   }
 
 }
