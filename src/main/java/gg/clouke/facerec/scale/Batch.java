@@ -1,5 +1,6 @@
 package gg.clouke.facerec.scale;
 
+import javax.annotation.Nonnull;
 import java.util.List;
 
 /**
@@ -7,7 +8,7 @@ import java.util.List;
  * @since 18.02.2024 11:10
  * © face-recognition - All Rights Reserved
  */
-public class Batch<T> {
+public class Batch<T> implements ElementProcessor<T> {
 
   private final List<T> elements;
 
@@ -15,12 +16,9 @@ public class Batch<T> {
     this.elements = elements;
   }
 
+  @Override @Nonnull
   public List<T> elements() {
     return elements;
-  }
-
-  public int size() {
-    return elements.size();
   }
 
   @Override
