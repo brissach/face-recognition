@@ -7,8 +7,8 @@ package gg.clouke.facerec;
  */
 public class SampleSize {
 
-  private static int width = 144;
-  private static int height = 144;
+  private static int width = -1;
+  private static int height = -1;
 
   public static void width(int w) {
     width = w;
@@ -21,6 +21,10 @@ public class SampleSize {
   public static void size(int s) {
     width = s;
     height = s;
+  }
+
+  public static boolean initiated() {
+    return width != -1 || height != -1;
   }
 
   public static int width() {
