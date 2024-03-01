@@ -1,5 +1,7 @@
 package gg.clouke.facerec;
 
+import gg.clouke.ContextVector;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -37,11 +39,19 @@ public class PipelineBuilder<O> {
   }
 
   public Pipeline<O> build(Encoder<O> encoder) {
-    return o -> {
-      O out = null;
-      for (Function<O, O> stage : stages)
-        out = stage.apply(o);
-      return encoder.encode(out);
+    return new Pipeline<O>() {
+      @Override
+      public ContextVector process(O o) {
+        O out = null;
+        for (Function<O, O> stage : stages)
+          out = stage.apply(o);
+        return encoder.encode(out);
+      }
+
+      @Override
+      public Encoder<O> encoder() {
+        return encoder;
+      }
     };
   }
 
